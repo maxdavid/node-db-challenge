@@ -1,0 +1,19 @@
+{
+  "name": "node-db-challenge",
+  "version": "1.0.0",
+  "description": "Sprint Challenge for DB Week",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxdavid/node-db-challenge.git"
+  },
+  "author": "Max David",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxdavid/node-db-challenge/issues"
+  },
+  "homepage": "https://github.com/maxdavid/node-db-challenge#readme"
+}
