@@ -7,7 +7,8 @@ module.exports = {
   findProjects,
   update,
   remove,
-  addProject
+  addProject,
+  findTaskContexts
 };
 
 /**
@@ -34,6 +35,13 @@ async function findById(id) {
       .where({ id })
       .first()) || null
   );
+}
+
+async function findTaskContexts(id) {
+  return await db('tasks_for_context')
+    .where('task_id', id)
+    .join('contexts', 'tasks_for_context.context_id', 'contexts.id')
+    .select('contexts.id', 'contexts.name');
 }
 
 /**

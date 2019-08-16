@@ -46,6 +46,24 @@ router.get('/:id/projects', async (req, res) => {
   }
 });
 
+router.get('/:id/contexts', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const contexts = await Tasks.findTaskContexts(id);
+
+    if (contexts.length) {
+      res.json(contexts);
+    } else {
+      res
+        .status(404)
+        .json({ message: 'Could not find contexts for given task' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get contexts' });
+  }
+});
+
 router.post('/', async (req, res) => {
   const taskData = req.body;
 

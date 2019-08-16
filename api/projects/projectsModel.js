@@ -30,11 +30,25 @@ async function find() {
  * @param {number} id
  */
 async function findById(id) {
-  return (
+  project =
     (await db('projects')
       .where({ id })
-      .first()) || null
-  );
+      .first()) || null;
+  return {
+    ...project,
+    tasks: await db('tasks')
+      .where('project_id', id)
+      .select(
+        'tasks.id',
+        'tasks.description',
+        'tasks.notes',
+        'tasks.completed'
+      ),
+    resources: await db('resources_for_project')
+      .where('project_id', id)
+      .join('resources', 'resources_for_project.resource_id', 'resources.id')
+      .select('resources.id', 'resources.name', 'resources.description')
+  };
 }
 
 /**
